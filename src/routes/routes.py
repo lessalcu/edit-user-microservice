@@ -1,5 +1,5 @@
 from flask import request, jsonify
-from models import db, User
+from src.models.models import db, User
 
 # Route to edit user
 def edit_user(id):

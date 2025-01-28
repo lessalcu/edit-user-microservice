@@ -1,8 +1,8 @@
 from flask import Flask
 from flask_cors import CORS
-from config import Config
-from models import db
-from routes import edit_user
+from src.config.config import Config
+from src.models.models import db
+from src.routes.routes import edit_user
 
 # Create the application
 app = Flask(__name__)
