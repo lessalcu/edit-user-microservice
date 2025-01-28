@@ -14,16 +14,21 @@ def edit_user(id):
             return jsonify({'error': 'User not found'}), 404
 
         # Update user data
+        if 'identification' in data:
+            user.identification = data['identification']
         if 'name' in data:
             user.name = data['name']
         if 'email' in data:
             user.email = data['email']
         if 'password' in data:
             user.password = data['password']
-        
-        # Save changes to database
+        if 'type' in data:
+            user.type = data['type']
+
+        # Save changes to the database
         db.session.commit()
 
         return jsonify({'mensaje': 'Usuario actualizado exitosamente'}), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 400
+
