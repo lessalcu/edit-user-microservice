@@ -31,4 +31,3 @@ def edit_user(id):
         return jsonify({'mensaje': 'Usuario actualizado exitosamente'}), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 400
-
