@@ -1,30 +1,17 @@
-# Use a Python base image
-FROM python:3.9-slim
+# Use a base image with Python
+FROM python:3.9
 
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy the necessary files to the container image
-COPY . /app
+# Copy all the project files to the container
+COPY . .
 
-# Install system dependencies required for SQL Server and pyodbc
-RUN apt-get update && apt-get install -y \
-gcc \
-g++ \
-unixodbc \
-unixodbc-dev \
-curl \
-gnupg \
-&& curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
-&& curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list \
-&& apt-get update && ACCEPT_EULA=Y apt-get install -y msodbcsql17 \
-&& apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# Install Python dependencies
+# Install the dependencies from requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose the port on which Flask will run
-EXPOSE 5000
+# Expose the port where Flask will run
+EXPOSE 5001
 
-# Set the default command to run the application
-CMD ["python", "app.py"]
+# Command to run the application correctly
+CMD ["python", "-m", "src.app"]

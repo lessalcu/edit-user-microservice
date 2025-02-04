@@ -28,6 +28,6 @@ def edit_user(id):
         # Save changes to the database
         db.session.commit()
 
-        return jsonify({'mensaje': 'Usuario actualizado exitosamente'}), 200
+        return jsonify({'mensaje': 'User updated successfully'}), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 400
