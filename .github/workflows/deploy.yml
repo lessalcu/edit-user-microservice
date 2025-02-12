@@ -52,6 +52,7 @@ jobs:
               --env DB_PASSWORD=${{ secrets.DB_PASSWORD_M }} \
               --env DB_SERVER=${{ secrets.DB_SERVER_M }} \
               --env DB_NAME=${{ secrets.DB_NAME_M }} \
+              --env QUERY_MICROSERVICE_URL=${{ secrets.QUERY_MICROSERVICE_URL }} \
               -p 5001:5001 \
               ${{ secrets.DOCKER_USERNAME }}/edit_user_microservice_image:latest
 
