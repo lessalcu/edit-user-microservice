@@ -20,7 +20,7 @@ def edit_user(id):
         if response.status_code != 200:
             return jsonify({'error': 'User not found'}), 404
 
-        user_data = response.json()  # Obtener datos actuales del usuario en JSON
+        user_data = response.json()  
 
        
         if 'identification' in data:
