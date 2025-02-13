@@ -12,17 +12,16 @@ QUERY_MICROSERVICE_URL = os.getenv('QUERY_MICROSERVICE_URL')
 
 def edit_user(id):
     try:
-        data = request.json  # Datos enviados en la solicitud
+        data = request.json  
 
-       
+      
         response = requests.get(f'{QUERY_MICROSERVICE_URL}/{id}')
-        
         if response.status_code != 200:
             return jsonify({'error': 'User not found'}), 404
 
         user_data = response.json()  
 
-       
+
         if 'identification' in data:
             user_data['identification'] = data['identification']
         if 'name' in data:
@@ -32,18 +31,15 @@ def edit_user(id):
         if 'type' in data:
             user_data['type'] = data['type']
 
-       
+     
         user = User.query.get(id)
         if not user:
             return jsonify({'error': 'User not found in database'}), 404
 
        
         if 'password' in data and data['password']:
-            user.set_password(data['password'])  # Aplica hashing
-        else:
-            user.password = user_data['password']  # Mantiene la actual
+            user.set_password(data['password'])
 
-       
         user.identification = user_data['identification']
         user.name = user_data['name']
         user.email = user_data['email']
